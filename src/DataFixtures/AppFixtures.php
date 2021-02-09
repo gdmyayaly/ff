@@ -28,7 +28,9 @@ class AppFixtures extends Fixture
             $langue->setAudio($langues[$i] . ".mp3");
             $manager->persist($langue);
         }
-        $tabtheme = ["Culture Géneral", "Mathématiques", "Français", "Design", "Tech&Digital", "Logique"];
+        // $tabtheme = ["Culture Géneral", "Mathématiques", "Français", "Design", "Tech&Digital", "Logique"];
+        $tabtheme = ["Culture Géneral", "Mathématiques"];
+
         $theme = [
             "Culture Géneral" => [
                 "Français" => ["debut" => "culturegeneraldebutfr.mp3", "fin" => "culturegeneralfinfr.mp3"],
@@ -38,22 +40,22 @@ class AppFixtures extends Fixture
                 "Français" => ["debut" => "mathdebutfr.mp3", "fin" => "mathfinfr.mp3"],
                 "Wolof" => ["debut" => "mathdebutwolof.mp3", "fin" => "mathfinwolof.mp3"],
             ],
-            "Français" => [
-                "Français" => ["debut" => "francaisdebutfr.mp3", "fin" => "francaisfinfr.mp3"],
-                "Wolof" => ["debut" => "francaisdebutwolof.mp3", "fin" => "francaisfinwolof.mp3"],
-            ],
-            "Design" => [
-                "Français" => ["debut" => "designdebutfr.mp3", "fin" => "designfinfr.mp3"],
-                "Wolof" => ["debut" => "designdebutwolof.mp3", "fin" => "designfinwolof.mp3"],
-            ],
-            "Tech&Digital" => [
-                "Français" => ["debut" => "techdigitaldebutfr.mp3", "fin" => "techdigitalfinfr.mp3"],
-                "Wolof" => ["debut" => "techdigitaldebutwolof.mp3", "fin" => "techdigitalfinwolof.mp3"],
-            ],
-            "Logique" => [
-                "Français" => ["debut" => "logiquedebutfr.mp3", "fin" => "logiquefinfr.mp3"],
-                "Wolof" => ["debut" => "logiquedebutwolof.mp3", "fin" => "logiquefinwolof.mp3"],
-            ]
+            // "Français" => [
+            //     "Français" => ["debut" => "francaisdebutfr.mp3", "fin" => "francaisfinfr.mp3"],
+            //     "Wolof" => ["debut" => "francaisdebutwolof.mp3", "fin" => "francaisfinwolof.mp3"],
+            // ],
+            // "Design" => [
+            //     "Français" => ["debut" => "designdebutfr.mp3", "fin" => "designfinfr.mp3"],
+            //     "Wolof" => ["debut" => "designdebutwolof.mp3", "fin" => "designfinwolof.mp3"],
+            // ],
+            // "Tech&Digital" => [
+            //     "Français" => ["debut" => "techdigitaldebutfr.mp3", "fin" => "techdigitalfinfr.mp3"],
+            //     "Wolof" => ["debut" => "techdigitaldebutwolof.mp3", "fin" => "techdigitalfinwolof.mp3"],
+            // ],
+            // "Logique" => [
+            //     "Français" => ["debut" => "logiquedebutfr.mp3", "fin" => "logiquefinfr.mp3"],
+            //     "Wolof" => ["debut" => "logiquedebutwolof.mp3", "fin" => "logiquefinwolof.mp3"],
+            // ]
         ];
         for ($i = 0; $i < count($theme); $i++) {
             $thematique = new Thematique();
@@ -240,27 +242,87 @@ class AppFixtures extends Fixture
             $manager->persist($question);
         }
         $manager->flush();
-        $questionfrench=array(
-            0 => array('num' => '1', 'libeller' => 'Lequel de ces fruits est une tomate?', 'rep1' => 'Une tomate', 'rep2' => 'Une cerise', 'rep3' => 'Une pomme', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => 'Une tomate'),
-            1 => array('num' => '2', 'libeller' => 'Lequel de ces fruits est une pêche?', 'rep1' => 'Une pomme', 'rep2' => 'Une pêche', 'rep3' => 'Un avocat', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => 'Une pêche'),
-            2 => array('num' => '3', 'libeller' => 'Lequel de ces fruits est des raisins?', 'rep1' => 'Une fraise', 'rep2' => 'Un citron', 'rep3' => 'Des raisins', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => 'Des raisins'),
-            3 => array('num' => '4', 'libeller' => 'Lequel de ces fruits est une orange?', 'rep1' => 'Une pomme', 'rep2' => 'une patate', 'rep3' => 'une orange', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => 'une orange'),
-            4 => array('num' => '5', 'libeller' => 'Une orange en dessous de la table', 'rep1' => 'Une table et une orange au dessus', 'rep2' => 'Une orange en dessous de la table', 'rep3' => 'Une table et une orange à gauche de la table', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => ''),
-            5 => array('num' => '6', 'libeller' => 'La banane au dessus de la table', 'rep1' => 'Une table et une banane à droite de la table', 'rep2' => 'Une table et une banane en dessous', 'rep3' => 'Une table et une banane à gauche de la table', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => ''),
-            // 6 => array('num' => '7', 'libeller' => 'Remplacer par le mot qui convient : Tu ……………. souvent vu.', 'rep1' => 'la', 'rep2' => 'l\'as', 'rep3' => 'l\'a', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => 'l’as'),
-            // 7 => array('num' => '8', 'libeller' => 'Remplacer par le mot qui convient : ……….soient tes résultats, tu arrêteras tes études.', 'rep1' => 'quelques', 'rep2' => 'quelque', 'rep3' => 'quels que', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => 'quels que'),
-            // 8 => array('num' => '9', 'libeller' => 'Quel est le genre du nom Artère?', 'rep1' => 'Masculin (M)', 'rep2' => 'Autre (A)', 'rep3' => 'Feminin (F)', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => 'Feminin (F)'),
-            // 9 => array('num' => '10', 'libeller' => 'Quel est le genre du nom Apostrophe?', 'rep1' => 'Feminin', 'rep2' => 'Masculin', 'rep3' => 'Autre', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
-            // 10 => array('num' => '11', 'libeller' => 'Remplacer par le mot qui convient : Je n’aime pas attendre, alors ........... à l’heure s’il vous plaît.', 'rep1' => 'sois', 'rep2' => 'êtes', 'rep3' => 'soyez', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
-            // 11 => array('num' => '12', 'libeller' => 'Remplacer par le mot qui convient : Pour maigrir, il faut que tu.............du sport.', 'rep1' => 'fais', 'rep2' => 'fasses', 'rep3' => 'faisais', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
-            // 12 => array('num' => '13', 'libeller' => 'Remplacer par le mot qui convient :Grâce aux cours de français, je comprends..............les gens.', 'rep1' => 'mieux', 'rep2' => 'moins bien', 'rep3' => 'beaucoup', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
-            // 13 => array('num' => '14', 'libeller' => 'Remplacer par le mot qui convient : Demain, retour du soleil ! Il .............beau partout à Dakar.', 'rep1' => 'fait', 'rep2' => 'ferait', 'rep3' => 'fera', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
-            // 14 => array('num' => '15', 'libeller' => 'Remplacer par le mot qui convient : Je vais reprendre.........de cette tarte. Elle est délicieuse !', 'rep1' => 'Une partie', 'rep2' => 'Une part', 'rep3' => 'Une pièce', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
-            // 15 => array('num' => '16', 'libeller' => 'Remplacer par le mot qui convient : Est-ce qu’il reste des œufs dans le frigo ? - Non, il ..... plus.', 'rep1' => 'n’y en a', 'rep2' => 'n’en a', 'rep3' => 'n’y a', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
-            // 16 => array('num' => '17', 'libeller' => 'Remplacer par le mot qui convient : Il ......... les mathématiques au lycée.', 'rep1' => 'étude', 'rep2' => 'étudie', 'rep3' => 'étudié', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
+        // $questionfrench=array(
+        //     0 => array('num' => '1', 'libeller' => 'Lequel de ces fruits est une tomate?', 'rep1' => 'Une tomate', 'rep2' => 'Une cerise', 'rep3' => 'Une pomme', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => 'Une tomate'),
+        //     1 => array('num' => '2', 'libeller' => 'Lequel de ces fruits est une pêche?', 'rep1' => 'Une pomme', 'rep2' => 'Une pêche', 'rep3' => 'Un avocat', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => 'Une pêche'),
+        //     2 => array('num' => '3', 'libeller' => 'Lequel de ces fruits est des raisins?', 'rep1' => 'Une fraise', 'rep2' => 'Un citron', 'rep3' => 'Des raisins', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => 'Des raisins'),
+        //     3 => array('num' => '4', 'libeller' => 'Lequel de ces fruits est une orange?', 'rep1' => 'Une pomme', 'rep2' => 'une patate', 'rep3' => 'une orange', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => 'une orange'),
+        //     4 => array('num' => '5', 'libeller' => 'Une orange en dessous de la table', 'rep1' => 'Une table et une orange au dessus', 'rep2' => 'Une orange en dessous de la table', 'rep3' => 'Une table et une orange à gauche de la table', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => ''),
+        //     5 => array('num' => '6', 'libeller' => 'La banane au dessus de la table', 'rep1' => 'Une table et une banane à droite de la table', 'rep2' => 'Une table et une banane en dessous', 'rep3' => 'Une table et une banane à gauche de la table', 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => ''),
+        //     // 6 => array('num' => '7', 'libeller' => 'Remplacer par le mot qui convient : Tu ……………. souvent vu.', 'rep1' => 'la', 'rep2' => 'l\'as', 'rep3' => 'l\'a', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => 'l’as'),
+        //     // 7 => array('num' => '8', 'libeller' => 'Remplacer par le mot qui convient : ……….soient tes résultats, tu arrêteras tes études.', 'rep1' => 'quelques', 'rep2' => 'quelque', 'rep3' => 'quels que', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => 'quels que'),
+        //     // 8 => array('num' => '9', 'libeller' => 'Quel est le genre du nom Artère?', 'rep1' => 'Masculin (M)', 'rep2' => 'Autre (A)', 'rep3' => 'Feminin (F)', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => 'Feminin (F)'),
+        //     // 9 => array('num' => '10', 'libeller' => 'Quel est le genre du nom Apostrophe?', 'rep1' => 'Feminin', 'rep2' => 'Masculin', 'rep3' => 'Autre', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
+        //     // 10 => array('num' => '11', 'libeller' => 'Remplacer par le mot qui convient : Je n’aime pas attendre, alors ........... à l’heure s’il vous plaît.', 'rep1' => 'sois', 'rep2' => 'êtes', 'rep3' => 'soyez', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
+        //     // 11 => array('num' => '12', 'libeller' => 'Remplacer par le mot qui convient : Pour maigrir, il faut que tu.............du sport.', 'rep1' => 'fais', 'rep2' => 'fasses', 'rep3' => 'faisais', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
+        //     // 12 => array('num' => '13', 'libeller' => 'Remplacer par le mot qui convient :Grâce aux cours de français, je comprends..............les gens.', 'rep1' => 'mieux', 'rep2' => 'moins bien', 'rep3' => 'beaucoup', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
+        //     // 13 => array('num' => '14', 'libeller' => 'Remplacer par le mot qui convient : Demain, retour du soleil ! Il .............beau partout à Dakar.', 'rep1' => 'fait', 'rep2' => 'ferait', 'rep3' => 'fera', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
+        //     // 14 => array('num' => '15', 'libeller' => 'Remplacer par le mot qui convient : Je vais reprendre.........de cette tarte. Elle est délicieuse !', 'rep1' => 'Une partie', 'rep2' => 'Une part', 'rep3' => 'Une pièce', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
+        //     // 15 => array('num' => '16', 'libeller' => 'Remplacer par le mot qui convient : Est-ce qu’il reste des œufs dans le frigo ? - Non, il ..... plus.', 'rep1' => 'n’y en a', 'rep2' => 'n’en a', 'rep3' => 'n’y a', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
+        //     // 16 => array('num' => '17', 'libeller' => 'Remplacer par le mot qui convient : Il ......... les mathématiques au lycée.', 'rep1' => 'étude', 'rep2' => 'étudie', 'rep3' => 'étudié', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => ''),
+        // );
+        // $math = $this->thematiqueRepository->findOneBy(['nom' => 'Français']);
+        // for ($j = 0; $j < count($questionfrench); $j++) {
+        //     $bb = $j + 1;
+        //     $libeller = [];
+        //     $question1 = [];
+        //     $question2 = [];
+        //     $question3 = [];
+        //     $nonequestion = [];
+        //     $goodanswer = [];
+        //     $audiolib = "Audio/Français/Q" . $bb . "/Q1.mp3";
+        //     $imagelib = null;
+        //     $audioquestion1 = null;
+        //     $imagequestion1 = null;
+        //     $audioquestion2 = null;
+        //     $imagequestion2 = null;
+        //     $audioquestion3 = null;
+        //     $imagequestion3 = null;
+        //     if ($questionfrench[$j]["audio"] === "oui") {
+        //         $audioquestion1 = 'Audio/Français/Q' . $bb . '/R1.mp3';
+        //         $audioquestion2 = 'Audio/Français/Q' . $bb . '/R2.mp3';
+        //         $audioquestion3 = 'Audio/Français/Q' . $bb . '/R3.mp3';
+        //     }
+        //     if ($questionfrench[$j]["picto"] === "oui") {
+        //         $imagequestion1 = 'Picto/Français/Q' . $bb . '/img1.svg';
+        //         $imagequestion2 = 'Picto/Français/Q' . $bb . '/img2.svg';
+        //         $imagequestion3 = 'Picto/Français/Q' . $bb . '/img3.svg';
+        //     }
+        //     for ($i = 0; $i < count($allLangue); $i++) {
+        //         $modellib = [];
+        //         $modellib = ["langue" => $allLangue[$i]->getNom(), "libeller" => $questionfrench[$j]["libeller"], "audio" => $audiolib, "image" => $imagelib];
+        //         array_push($libeller, $modellib);
+        //         $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => $questionfrench[$j]["rep1"], "audio" => $audioquestion1, "image" => $imagequestion1];
+        //         array_push($question1, $modellib);
+        //         $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => $questionfrench[$j]["rep2"], "audio" => $audioquestion2, "image" => $imagequestion2];
+        //         array_push($question2, $modellib);
+        //         $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => $questionfrench[$j]["rep3"], "audio" => $audioquestion3, "image" => $imagequestion3];
+        //         array_push($question3, $modellib);
+        //         $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => "je sais pas", "audio" => null, "image" => 'none.png'];
+        //         array_push($nonequestion, $modellib);
+        //         $modellib = ["langue" => $allLangue[$i]->getNom(), "good" => $questionfrench[$j]["rep1"]];
+        //         array_push($goodanswer, $modellib);
+        //     }
+        //     $question = new Questionnaires();
+        //     $question->setLibeller($libeller);
+        //     $question->setReponse1($question1);
+        //     $question->setReponse2($question2);
+        //     $question->setReponse3($question3);
+        //     $question->setReponse4($nonequestion);
+        //     $question->setBonnereponse($goodanswer);
+        //     $question->setThematique($math);
+        //     $manager->persist($question);
+        // }
+        // $manager->flush();
+        //QUIzz Tuto
+        $questiontuto=array(
+            0 => array('num' => '1', 'libeller' => 'Quelle est la capitale du Sénégal', 'rep1' => 'Thiès', 'rep2' => 'Dakar', 'rep3' => 'Saint-Louis', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => 'Une Dakar'),
+            1 => array('num' => '2', 'libeller' => 'Lequel de ces fruits est une Tomate?', 'rep1' => null, 'rep2' => null, 'rep3' => null, 'picto' => 'oui', 'audio' => 'non', 'onlyimage' => 'oui', 'bonnereponse' => 'img3.svg'),
+            2 => array('num' => '3', 'libeller' => 'Combien vaut 1+1', 'rep1' => '1', 'rep2' => '2', 'rep3' => '3', 'picto' => 'non', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => '2'),
+            3 => array('num' => '4', 'libeller' => 'Quel animal symbolise le Sénégal ?', 'rep1' => 'Éléphant', 'rep2' => 'Lion', 'rep3' => 'Singe', 'picto' => 'oui', 'audio' => 'oui', 'onlyimage' => 'non', 'bonnereponse' => '2'),
         );
-        $math = $this->thematiqueRepository->findOneBy(['nom' => 'Français']);
-        for ($j = 0; $j < count($questionfrench); $j++) {
+       // $math = $this->thematiqueRepository->findOneBy(['nom' => 'Français']);
+        for ($j = 0; $j < count($questiontuto); $j++) {
             $bb = $j + 1;
             $libeller = [];
             $question1 = [];
@@ -268,7 +330,7 @@ class AppFixtures extends Fixture
             $question3 = [];
             $nonequestion = [];
             $goodanswer = [];
-            $audiolib = "Audio/Français/Q" . $bb . "/Q1.mp3";
+            $audiolib = "Audio/Tuto/Q" . $bb . "/Q1.mp3";
             $imagelib = null;
             $audioquestion1 = null;
             $imagequestion1 = null;
@@ -276,29 +338,29 @@ class AppFixtures extends Fixture
             $imagequestion2 = null;
             $audioquestion3 = null;
             $imagequestion3 = null;
-            if ($questionfrench[$j]["audio"] === "oui") {
-                $audioquestion1 = 'Audio/Français/Q' . $bb . '/R1.mp3';
-                $audioquestion2 = 'Audio/Français/Q' . $bb . '/R2.mp3';
-                $audioquestion3 = 'Audio/Français/Q' . $bb . '/R3.mp3';
+            if ($questiontuto[$j]["audio"] === "oui") {
+                $audioquestion1 = 'Audio/Tuto/Q' . $bb . '/R1.mp3';
+                $audioquestion2 = 'Audio/Tuto/Q' . $bb . '/R2.mp3';
+                $audioquestion3 = 'Audio/Tuto/Q' . $bb . '/R3.mp3';
             }
-            if ($questionfrench[$j]["picto"] === "oui") {
-                $imagequestion1 = 'Picto/Français/Q' . $bb . '/img1.svg';
-                $imagequestion2 = 'Picto/Français/Q' . $bb . '/img2.svg';
-                $imagequestion3 = 'Picto/Français/Q' . $bb . '/img3.svg';
+            if ($questiontuto[$j]["picto"] === "oui") {
+                $imagequestion1 = 'Picto/Tuto/Q' . $bb . '/img1.svg';
+                $imagequestion2 = 'Picto/Tuto/Q' . $bb . '/img2.svg';
+                $imagequestion3 = 'Picto/Tuto/Q' . $bb . '/img3.svg';
             }
             for ($i = 0; $i < count($allLangue); $i++) {
                 $modellib = [];
-                $modellib = ["langue" => $allLangue[$i]->getNom(), "libeller" => $questionfrench[$j]["libeller"], "audio" => $audiolib, "image" => $imagelib];
+                $modellib = ["langue" => $allLangue[$i]->getNom(), "libeller" => $questiontuto[$j]["libeller"], "audio" => $audiolib, "image" => $imagelib];
                 array_push($libeller, $modellib);
-                $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => $questionfrench[$j]["rep1"], "audio" => $audioquestion1, "image" => $imagequestion1];
+                $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => $questiontuto[$j]["rep1"], "audio" => $audioquestion1, "image" => $imagequestion1];
                 array_push($question1, $modellib);
-                $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => $questionfrench[$j]["rep2"], "audio" => $audioquestion2, "image" => $imagequestion2];
+                $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => $questiontuto[$j]["rep2"], "audio" => $audioquestion2, "image" => $imagequestion2];
                 array_push($question2, $modellib);
-                $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => $questionfrench[$j]["rep3"], "audio" => $audioquestion3, "image" => $imagequestion3];
+                $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => $questiontuto[$j]["rep3"], "audio" => $audioquestion3, "image" => $imagequestion3];
                 array_push($question3, $modellib);
                 $modellib = ["langue" => $allLangue[$i]->getNom(), "question" => "je sais pas", "audio" => null, "image" => 'none.png'];
                 array_push($nonequestion, $modellib);
-                $modellib = ["langue" => $allLangue[$i]->getNom(), "good" => $questionfrench[$j]["rep1"]];
+                $modellib = ["langue" => $allLangue[$i]->getNom(), "good" => $questiontuto[$j]["bonnereponse"]];
                 array_push($goodanswer, $modellib);
             }
             $question = new Questionnaires();
@@ -308,7 +370,7 @@ class AppFixtures extends Fixture
             $question->setReponse3($question3);
             $question->setReponse4($nonequestion);
             $question->setBonnereponse($goodanswer);
-            $question->setThematique($math);
+            // $question->setThematique($math);
             $manager->persist($question);
         }
         $manager->flush();

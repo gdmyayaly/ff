@@ -126,5 +126,16 @@ class PlayerController extends AbstractController
             'Content-Type' => 'application/json'
         ]);
     }
-   
+           /**
+     * @Route("/gettuto", methods={"GET"})
+     */
+    public function gettuto(SerializerInterface $serializer,QuestionnairesRepository $questionnairesRepository){
+        $question= $questionnairesRepository->findBy(['thematique'=>null]);
+        $data = $serializer->serialize($question, 'json', [
+            'groups' => ['api']
+        ]);
+        return new Response($data, 200, [
+            'Content-Type' => 'application/json'
+        ]);
+    }
 }
