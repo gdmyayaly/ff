@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+
+
 /**
  * @ORM\Entity(repositoryClass=ThematiqueRepository::class)
  */
@@ -16,31 +18,24 @@ class Thematique
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"api"})
+     * @Groups({"user","admin"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"api"})
+     * @Groups({"user","admin"})
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="array")
-     * @Groups({"api"})
+     * @ORM\OneToMany(targetEntity=Questions::class, mappedBy="thematique")
      */
-    private $media = [];
-
-    /**
-     * @ORM\OneToMany(targetEntity=Questionnaires::class, mappedBy="thematique")
-     * @Groups({"api"})
-     */
-    private $questionnaires;
+    private $questions;
 
     public function __construct()
     {
-        $this->questionnaires = new ArrayCollection();
+        $this->questions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -60,42 +55,30 @@ class Thematique
         return $this;
     }
 
-    public function getMedia(): ?array
-    {
-        return $this->media;
-    }
-
-    public function setMedia(array $media): self
-    {
-        $this->media = $media;
-
-        return $this;
-    }
-
     /**
-     * @return Collection|Questionnaires[]
+     * @return Collection|Questions[]
      */
-    public function getQuestionnaires(): Collection
+    public function getQuestions(): Collection
     {
-        return $this->questionnaires;
+        return $this->questions;
     }
 
-    public function addQuestionnaire(Questionnaires $questionnaire): self
+    public function addQuestion(Questions $question): self
     {
-        if (!$this->questionnaires->contains($questionnaire)) {
-            $this->questionnaires[] = $questionnaire;
-            $questionnaire->setThematique($this);
+        if (!$this->questions->contains($question)) {
+            $this->questions[] = $question;
+            $question->setThematique($this);
         }
 
         return $this;
     }
 
-    public function removeQuestionnaire(Questionnaires $questionnaire): self
+    public function removeQuestion(Questions $question): self
     {
-        if ($this->questionnaires->removeElement($questionnaire)) {
+        if ($this->questions->removeElement($question)) {
             // set the owning side to null (unless already changed)
-            if ($questionnaire->getThematique() === $this) {
-                $questionnaire->setThematique(null);
+            if ($question->getThematique() === $this) {
+                $question->setThematique(null);
             }
         }
 

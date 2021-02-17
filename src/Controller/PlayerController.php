@@ -3,13 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\UserReponseQuestion;
 use App\Repository\LangueRepository;
-use App\Repository\QuestionnairesRepository;
+use App\Repository\QuestionsRepository;
 use App\Repository\ThematiqueRepository;
 use App\Repository\UserRepository;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,20 +16,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 
-    /**
+/**
      * @Route("/player", name="player")
      */
 class PlayerController extends AbstractController
 {
-    /**
+
+/**
      * @Route("/langue", methods={"GET"})
      */
     public function getLangue(LangueRepository $langueRepository,SerializerInterface $serializer){
         $langue= $langueRepository->findAll();
         $data = $serializer->serialize($langue, 'json', [
-            'groups' => ['api']
+            'groups' => ['user']
         ]);
         return new Response($data, 200, [
             'Content-Type' => 'application/json'
@@ -114,25 +113,39 @@ class PlayerController extends AbstractController
         ]);
         return new JsonResponse(['token' => $token]);
     }
-        /**
-     * @Route("/theme", methods={"GET"})
+    /**
+     * @Route("/gettuto", methods={"GET"})
      */
-    public function getThematique(ThematiqueRepository $thematiqueRepository,SerializerInterface $serializer){
-        $langue= $thematiqueRepository->findAll();
-        $data = $serializer->serialize($langue, 'json', [
-            'groups' => ['api']
+    public function gettuto(QuestionsRepository $questionsRepository, SerializerInterface $serializer): Response
+    {
+        $tuto=$questionsRepository->findBy(['thematique'=>null]);
+        $data = $serializer->serialize($tuto, 'json', [
+            'groups' => ['user']
         ]);
         return new Response($data, 200, [
             'Content-Type' => 'application/json'
         ]);
     }
-           /**
-     * @Route("/gettuto", methods={"GET"})
+    /**
+     * @Route("/theme", methods={"GET"})
      */
-    public function gettuto(SerializerInterface $serializer,QuestionnairesRepository $questionnairesRepository){
-        $question= $questionnairesRepository->findBy(['thematique'=>null]);
-        $data = $serializer->serialize($question, 'json', [
-            'groups' => ['api']
+    public function getTheme(ThematiqueRepository $thematiqueRepository, SerializerInterface $serializer){
+        $tuto=$thematiqueRepository->findAll();
+        $data = $serializer->serialize($tuto, 'json', [
+            'groups' => ['user']
+        ]);
+        return new Response($data, 200, [
+            'Content-Type' => 'application/json'
+        ]);
+    }
+    /**
+     * @Route("/question", methods={"GET"})
+     */
+    public function getQuestion(Request $request,QuestionsRepository $questionsRepository,SerializerInterface $serializer){
+        $idQuestion=$request->query->get('id');
+        $tuto=$questionsRepository->findBy(['thematique'=>$idQuestion]);
+        $data = $serializer->serialize($tuto, 'json', [
+            'groups' => ['user']
         ]);
         return new Response($data, 200, [
             'Content-Type' => 'application/json'

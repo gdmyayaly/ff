@@ -18,103 +18,33 @@ class UserReponseQuestion
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Langue::class, inversedBy="userReponseQuestions")
-     */
-    private $langue;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Questionnaires::class, inversedBy="userReponseQuestions")
-     */
-    private $question;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $datedebut;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $datefin;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $reponse;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userReponseQuestions")
      */
     private $user;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity=Questions::class, inversedBy="userReponseQuestions")
+     */
+    private $question;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ReponseQuestions::class, inversedBy="userReponseQuestions")
+     */
+    private $reponse;
+
+    /**
+     * @ORM\Column(type="integer")
      */
     private $duree;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Langue::class, inversedBy="userReponseQuestions")
+     */
+    private $langue;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getLangue(): ?Langue
-    {
-        return $this->langue;
-    }
-
-    public function setLangue(?Langue $langue): self
-    {
-        $this->langue = $langue;
-
-        return $this;
-    }
-
-    public function getQuestion(): ?Questionnaires
-    {
-        return $this->question;
-    }
-
-    public function setQuestion(?Questionnaires $question): self
-    {
-        $this->question = $question;
-
-        return $this;
-    }
-
-    public function getDatedebut(): ?\DateTimeInterface
-    {
-        return $this->datedebut;
-    }
-
-    public function setDatedebut(\DateTimeInterface $datedebut): self
-    {
-        $this->datedebut = $datedebut;
-
-        return $this;
-    }
-
-    public function getDatefin(): ?\DateTimeInterface
-    {
-        return $this->datefin;
-    }
-
-    public function setDatefin(\DateTimeInterface $datefin): self
-    {
-        $this->datefin = $datefin;
-
-        return $this;
-    }
-
-    public function getReponse(): ?string
-    {
-        return $this->reponse;
-    }
-
-    public function setReponse(string $reponse): self
-    {
-        $this->reponse = $reponse;
-
-        return $this;
     }
 
     public function getUser(): ?User
@@ -129,6 +59,30 @@ class UserReponseQuestion
         return $this;
     }
 
+    public function getQuestion(): ?Questions
+    {
+        return $this->question;
+    }
+
+    public function setQuestion(?Questions $question): self
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    public function getReponse(): ?ReponseQuestions
+    {
+        return $this->reponse;
+    }
+
+    public function setReponse(?ReponseQuestions $reponse): self
+    {
+        $this->reponse = $reponse;
+
+        return $this;
+    }
+
     public function getDuree(): ?int
     {
         return $this->duree;
@@ -137,6 +91,18 @@ class UserReponseQuestion
     public function setDuree(int $duree): self
     {
         $this->duree = $duree;
+
+        return $this;
+    }
+
+    public function getLangue(): ?Langue
+    {
+        return $this->langue;
+    }
+
+    public function setLangue(?Langue $langue): self
+    {
+        $this->langue = $langue;
 
         return $this;
     }

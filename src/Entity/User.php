@@ -47,11 +47,6 @@ class User implements UserInterface
     private $nom;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Langue::class, inversedBy="users")
-     */
-    private $langue;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $statut;
@@ -60,6 +55,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=UserReponseQuestion::class, mappedBy="user")
      */
     private $userReponseQuestions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Langue::class, inversedBy="users")
+     */
+    private $langue;
 
     public function __construct()
     {
@@ -163,18 +163,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLangue(): ?Langue
-    {
-        return $this->langue;
-    }
-
-    public function setLangue(?Langue $langue): self
-    {
-        $this->langue = $langue;
-
-        return $this;
-    }
-
     public function getStatut(): ?bool
     {
         return $this->statut;
@@ -213,6 +201,18 @@ class User implements UserInterface
                 $userReponseQuestion->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLangue(): ?Langue
+    {
+        return $this->langue;
+    }
+
+    public function setLangue(?Langue $langue): self
+    {
+        $this->langue = $langue;
 
         return $this;
     }

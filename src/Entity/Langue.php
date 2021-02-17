@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+
 /**
  * @ORM\Entity(repositoryClass=LangueRepository::class)
  */
@@ -17,36 +18,36 @@ class Langue
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"api"})
+     * @Groups({"user","admin"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"api"})
+     * @Groups({"user","admin"})
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"api"})
+     * @Groups({"user","admin"})
      */
     private $audio;
-
-    /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="langue")
-     */
-    private $users;
 
     /**
      * @ORM\OneToMany(targetEntity=UserReponseQuestion::class, mappedBy="langue")
      */
     private $userReponseQuestions;
 
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="langue")
+     */
+    private $users;
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
         $this->userReponseQuestions = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,36 +80,6 @@ class Langue
     }
 
     /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setLangue($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getLangue() === $this) {
-                $user->setLangue(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|UserReponseQuestion[]
      */
     public function getUserReponseQuestions(): Collection
@@ -132,6 +103,36 @@ class Langue
             // set the owning side to null (unless already changed)
             if ($userReponseQuestion->getLangue() === $this) {
                 $userReponseQuestion->setLangue(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setLangue($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getLangue() === $this) {
+                $user->setLangue(null);
             }
         }
 
