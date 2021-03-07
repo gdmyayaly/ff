@@ -8,11 +8,14 @@
 {% block body %}
   <div class="container-fluid">
     <div class="row">
+      {% for item in user %}
       <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="carde">
-        <p>sdd</p>
+        <p>{{item.prenom}}</p>
         </div>
       </div>
+      {% endfor %}
+
     </div>
   </div>
 {% endblock %}

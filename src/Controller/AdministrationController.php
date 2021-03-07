@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class AdministrationController extends AbstractController
 {
     /**
-     * @Route("/", name="home_administration")
+     * @Route("/home", name="home_administration")
      */
     public function home(): Response
     {
